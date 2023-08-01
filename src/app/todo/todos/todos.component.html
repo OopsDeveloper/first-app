@@ -1,0 +1,17 @@
+<div class="title">
+  <h1>나의하루</h1>
+  <h2>{{ today | date:'Y년 M월 d일' }}</h2>
+</div>
+<div>
+  <div *ngFor="let todo of todos" (click)="toggleTodo(todo)">
+<!--    <input type="checkbox" [checked]="todo.done"> {{ todo.text}}-->
+    <app-todo [todo]="todo"></app-todo> <!--부모에서 자식으로 맵핑-->
+  </div>
+</div>
+<div>
+<!--  <input type="text" placeholder="할 일 추가" [(ngModel)]="newText"> &lt;!&ndash;양방향 데이터 바인딩 함&ndash;&gt;-->
+<!--  <button (click)="addTodo(newText)">Add</button>-->
+    <app-add-todo (onTodoAdded)="addTodo($event)"></app-add-todo>
+</div>
+
+{{ todos | json }} <!-- todos를 파이프쓰면 json으로 포맷팅해서 보여준다. -->
